@@ -16,7 +16,7 @@ namespace MonoForms.UI
         public UiButton(Game1 game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game, position, true, clickEvent, text, font)
         {
             _texture = Game.Content.Load<Texture2D>("button");
-            _highlightTexture = Game.Content.Load<Texture2D>("playerLife2_red");
+            //_highlightTexture = Game.Content.Load<Texture2D>("playerLife2_red");
         }
         #endregion
 

@@ -34,7 +34,7 @@ namespace MonoForms
             // TODO: Add your initialization logic here
             WindowWidth = graphics.PreferredBackBufferWidth;
             WindowHeight = graphics.PreferredBackBufferHeight;
-
+           
             base.Initialize();
         }
 
@@ -46,7 +46,7 @@ namespace MonoForms
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            btn = new UiButton(this, Vector2.One, " fsfs", Content.Load<SpriteFont>("file") , null);
             // TODO: use this.Content to load your game content here
         }
 
@@ -81,9 +81,10 @@ namespace MonoForms
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            btn.Draw(spriteBatch);
             // TODO: Add your drawing code here
-
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
