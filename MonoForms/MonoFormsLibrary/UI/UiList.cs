@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoForms;
 
-namespace MonoForms.UI
+namespace MonoFormsLibrary.UI
 {
     public class UiList : BaseUiComponent
     {
@@ -14,7 +13,7 @@ namespace MonoForms.UI
         #endregion
 
         #region Public constructors
-        public UiList(Game1 game, Vector2 position, SpriteFont font, string[] list, int spaceBetweenText) : base(game, position)
+        public UiList(Game game, Vector2 position, SpriteFont font, string[] list, int spaceBetweenText) : base(game, position)
         {
             _font = font;
             _spaceBetweenLabels = spaceBetweenText;
@@ -28,7 +27,7 @@ namespace MonoForms.UI
         {
             _labels = new List<UiLabel>();
             for (int i = 0; i < list.Length; i++)
-                _labels.Add(new UiLabel(Game, Position + new Vector2(0, _spaceBetweenLabels * i) - new Vector2(Game.WindowWidth / 2f, Game.WindowHeight / 2f), list[i], _font));
+                _labels.Add(new UiLabel(Game, Position + new Vector2(0, _spaceBetweenLabels * i) - new Vector2(1280 / 2f, 720 / 2f), list[i], _font));
         }
         #endregion
 

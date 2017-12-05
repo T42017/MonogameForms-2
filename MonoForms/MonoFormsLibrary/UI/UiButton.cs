@@ -1,9 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoForms;
 
-namespace MonoForms.UI
+namespace MonoFormsLibrary.UI
 {
     public class UiButton : BaseUiComponent
     {
@@ -13,7 +12,7 @@ namespace MonoForms.UI
         #endregion
 
         #region Public constructors
-        public UiButton(Game1 game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game, position, true, clickEvent, text, font)
+        public UiButton(Game game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game, position, true, clickEvent, text, font)
         {
             _texture = Game.Content.Load<Texture2D>("button");
             //_highlightTexture = Game.Content.Load<Texture2D>("playerLife2_red");

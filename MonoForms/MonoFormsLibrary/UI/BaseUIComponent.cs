@@ -1,14 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoForms;
 
-namespace MonoForms.UI
+namespace MonoFormsLibrary.UI
 {
     public abstract class BaseUiComponent
     {
         #region Protected fields
-        protected Game1 Game;
+        protected Game Game;
         #endregion
 
         #region Public properties
@@ -22,10 +21,10 @@ namespace MonoForms.UI
         #endregion
 
         #region Protected constructors
-        protected BaseUiComponent(Game1 game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent, string text, SpriteFont font)
+        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent, string text, SpriteFont font)
         {
             Game = game;
-            Position = position + new Vector2(game.WindowWidth / 2f, game.WindowHeight / 2f);
+            Position = position + new Vector2(1280 / 2f, 720 / 2f);
             CanBeHighLighted = canBeHighlighted;
             ClickEvent = clickEvent;
             Text = text;
@@ -35,10 +34,10 @@ namespace MonoForms.UI
                 HasClickEvent = true;
         }
 
-        protected BaseUiComponent(Game1 game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent, SpriteFont font)
+        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent, SpriteFont font)
         {
             Game = game;
-            Position = position + new Vector2(game.WindowWidth / 2f, game.WindowHeight / 2f);
+            Position = position + new Vector2(1280 / 2f, 720 / 2f);
             CanBeHighLighted = canBeHighlighted;
             ClickEvent = clickEvent;
             Font = font;
@@ -47,10 +46,10 @@ namespace MonoForms.UI
                 HasClickEvent = true;
         }
 
-        protected BaseUiComponent(Game1 game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent)
+        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent)
         {
             Game = game;
-            Position = position + new Vector2(game.WindowWidth / 2f, game.WindowHeight / 2f);
+            Position = position + new Vector2(1280 / 2f, 720 / 2f);
             CanBeHighLighted = canBeHighlighted;
             ClickEvent = clickEvent;
 
@@ -58,10 +57,10 @@ namespace MonoForms.UI
                 HasClickEvent = true;
         }
 
-        protected BaseUiComponent(Game1 game, Vector2 position)
+        protected BaseUiComponent(Game game, Vector2 position)
         {
             Game = game;
-            Position = position + new Vector2(game.WindowWidth / 2f, game.WindowHeight / 2f);
+            Position = position + new Vector2(1280 / 2f, 720 / 2f);
             CanBeHighLighted = false;
             HasClickEvent = false;
         }

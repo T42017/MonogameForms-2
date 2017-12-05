@@ -2,9 +2,8 @@
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoForms;
 
-namespace MonoForms.UI
+namespace MonoFormsLibrary.UI
 {
     public class UiTextbox : BaseUiComponent
     {
@@ -32,7 +31,7 @@ namespace MonoForms.UI
         #endregion
 
         #region Public constructors
-        public UiTextbox(Game1 game, Vector2 position, SpriteFont font) : base(game, position, true, null, font)
+        public UiTextbox(Game game, Vector2 position, SpriteFont font) : base(game, position, true, null, font)
         {
             _texture = Game.Content.Load<Texture2D>("button");
 

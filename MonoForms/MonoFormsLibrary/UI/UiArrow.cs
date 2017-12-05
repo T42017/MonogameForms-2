@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoForms;
 
-namespace MonoForms.UI
+namespace MonoFormsLibrary.UI
 {
     public class UiArrow : BaseUiComponent
     {
@@ -13,11 +12,11 @@ namespace MonoForms.UI
         private Texture2D _textureRight;
         private Texture2D _texture;
         private SpriteFont _font;
-        private Game1 _game;
+        private Game _game;
         #endregion
 
         #region Public constructors
-        public UiArrow(Game1 game, Vector2 position) : base(game, position, false, null)
+        public UiArrow(Game game, Vector2 position) : base(game, position, false, null)
         {
             _game = game;
             _font = _game.Content.Load<SpriteFont>("diff");

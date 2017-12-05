@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoForms;
 
-namespace MonoForms.UI
+namespace MonoFormsLibrary.UI
 {
     public class UiLabel : BaseUiComponent
     {
         #region Public constructors
-        public UiLabel(Game1 game, Vector2 position, string text, SpriteFont font) : base(game, position, false, null, text, font) { }
+        public UiLabel(Game game, Vector2 position, string text, SpriteFont font) : base(game, position, false, null, text, font) { }
         #endregion
 
         #region Public overrides
