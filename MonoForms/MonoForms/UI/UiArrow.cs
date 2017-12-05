@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoForms;
 
-namespace Asteroid_Death_2_Electric_Boogaloo.UI
+namespace MonoForms.UI
 {
     public class UiArrow : BaseUiComponent
     {

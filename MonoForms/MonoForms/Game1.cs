@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoForms.UI;
 
 namespace MonoForms
 {
@@ -13,6 +14,8 @@ namespace MonoForms
         SpriteBatch spriteBatch;
 
         public int WindowWidth, WindowHeight;
+
+        public UiButton btn;
 
         public Game1()
         {
