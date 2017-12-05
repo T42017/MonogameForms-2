@@ -12,6 +12,8 @@ namespace MonoForms
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public int WindowWidth, WindowHeight;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -27,6 +29,8 @@ namespace MonoForms
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            WindowWidth = graphics.PreferredBackBufferWidth;
+            WindowHeight = graphics.PreferredBackBufferHeight;
 
             base.Initialize();
         }
