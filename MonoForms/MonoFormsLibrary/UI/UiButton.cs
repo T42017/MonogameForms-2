@@ -25,7 +25,7 @@ namespace MonoFormsLibrary.UI
         public override void Draw(SpriteBatch spriteBatch)
         {
             Vector2 textSize = Font.MeasureString(Text);
-            spriteBatch.Draw(_texture, Position - new Vector2(_texture.Width / 2f, _texture.Height / 2f), Color.White);
+            spriteBatch.Draw(_texture, Position - new Vector2(_texture.Width / 2f, _texture.Height / 2f), null, Color.White, 0f , new Vector2(_texture.Width / 2f, _texture.Height / 2f), 0.25f, SpriteEffects.None, 0f);
             spriteBatch.DrawString(Font, Text, Position - textSize / 2, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
             if (IsHighlighted)
