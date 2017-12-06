@@ -7,7 +7,8 @@ namespace MonoFormsLibrary.UI
     public class UiButton : BaseUiComponent
     {
         #region Private fields
-        private Texture2D _texture;
+
+        public Texture2D _texture;
         private Texture2D _highlightTexture;
         #endregion
 
