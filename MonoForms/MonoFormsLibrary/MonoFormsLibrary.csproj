@@ -42,6 +42,7 @@
     <Compile Include="UI\BaseUIComponent.cs" />
     <Compile Include="UI\UiArrow.cs" />
     <Compile Include="UI\UiButton.cs" />
+    <Compile Include="UI\UiCheckBox.cs" />
     <Compile Include="UI\UiLabel.cs" />
     <Compile Include="UI\UiList.cs" />
     <Compile Include="UI\UiTextbox.cs" />

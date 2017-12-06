@@ -17,6 +17,7 @@ namespace MonoForms
 
         public int WindowWidth, WindowHeight;
 
+        public UiCheckBox cbox;
         public UiButton btn;
 
         public Game1()
@@ -51,11 +52,14 @@ namespace MonoForms
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            btn = new UiButton(this, Vector2.One, "", Content.Load<SpriteFont>("file") ,
-                delegate(object sender, EventArgs args)
-                {
-                    Exit();
-                });
+            cbox = new UiCheckBox(this, Vector2.One, "", Content.Load<SpriteFont>("file"),
+            delegate (object sender, EventArgs args)
+            {
+                Exit();
+            });
+
+            //btn = new UiButton(this, Vector2.One, "", Content.Load<SpriteFont>("file") ,
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -82,7 +86,7 @@ namespace MonoForms
             
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                Rectangle r = new Rectangle((int)btn.Position.X - btn._texture.Width / 2, (int)btn.Position.Y - btn._texture.Height / 2, btn._texture.Width, btn._texture.Height);
+                Rectangle r = new Rectangle((int)cbox.Position.X - cbox._guiCheckBox.Width / 2, (int)cbox.Position.Y - cbox._guiCheckBox.Height / 2, cbox._guiCheckBox.Width, cbox._guiCheckBox.Height);
                 if (r.Contains(mouseState.Position))
                 {
                     Debug.WriteLine("Du är värdelös :P");
@@ -101,8 +105,8 @@ namespace MonoForms
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            btn.Draw(spriteBatch);
-            // TODO: Add your drawing code here
+            //btn.Draw(spriteBatch);
+            cbox.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
