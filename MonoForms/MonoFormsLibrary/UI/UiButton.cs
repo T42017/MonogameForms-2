@@ -7,7 +7,7 @@ namespace MonoFormsLibrary.UI
     public class UiButton : BaseUiComponent
     {
         #region Private fields
-        private Texture2D _texture;
+        public Texture2D _texture;
         private Texture2D _highlightTexture;
         #endregion
 
@@ -24,8 +24,12 @@ namespace MonoFormsLibrary.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            float textureScale = 0.3f;
+            float textureWidth = _texture.Width * textureScale;
+            float textureHeight = _texture.Height * textureScale;
+            
             Vector2 textSize = Font.MeasureString(Text);
-            spriteBatch.Draw(_texture, Position - new Vector2(_texture.Width / 2f, _texture.Height / 2f), null, Color.White, 0f , new Vector2(_texture.Width / 2f, _texture.Height / 2f), 0.25f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, Position - new Vector2(textureWidth / 2f, textureHeight / 2f), null, Color.White, 0f , new Vector2(), textureScale, SpriteEffects.None, 0f);
             spriteBatch.DrawString(Font, Text, Position - textSize / 2, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
             if (IsHighlighted)

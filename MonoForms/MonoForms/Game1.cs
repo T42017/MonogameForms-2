@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFormsLibrary.UI;
@@ -21,7 +23,7 @@ namespace MonoForms
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
+            this.IsMouseVisible = true;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
         }
@@ -49,7 +51,11 @@ namespace MonoForms
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            btn = new UiButton(this, Vector2.One, " fsfs", Content.Load<SpriteFont>("file") , null);
+            btn = new UiButton(this, Vector2.One, "", Content.Load<SpriteFont>("file") ,
+                delegate(object sender, EventArgs args)
+                {
+                    Exit();
+                });
             // TODO: use this.Content to load your game content here
         }
 
@@ -72,8 +78,18 @@ namespace MonoForms
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            MouseState mouseState = Mouse.GetState();
+            
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                Rectangle r = new Rectangle((int)btn.Position.X - btn._texture.Width / 2, (int)btn.Position.Y - btn._texture.Height / 2, btn._texture.Width, btn._texture.Height);
+                if (r.Contains(mouseState.Position))
+                {
+                    Debug.WriteLine("Du är värdelös :P");
+                }
+            }
 
+            // TODO: Add your update logic here
             base.Update(gameTime);
         }
 
