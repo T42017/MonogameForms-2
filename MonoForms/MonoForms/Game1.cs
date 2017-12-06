@@ -51,7 +51,7 @@ namespace MonoForms
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            btn = new UiButton(this, Vector2.One, "", Content.Load<SpriteFont>("file") ,
+            btn = new UiButton(this, Vector2.One, "Hej", Content.Load<SpriteFont>("file") ,
                 delegate(object sender, EventArgs args)
                 {
                     Exit();
