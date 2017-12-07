@@ -83,10 +83,9 @@ namespace MonoForms
 
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-
                 if (!hasclicked && btn.boundsRectangle.Contains(mouseState.Position))
                 {
-                    btn.Toggle();
+                    btn.Draw(spriteBatch);
                 }
                 hasclicked = true;
             }
