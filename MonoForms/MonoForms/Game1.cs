@@ -16,6 +16,7 @@ namespace MonoForms
         SpriteBatch spriteBatch;
 
         public int WindowWidth, WindowHeight;
+        public bool hasclicked;
 
         public UiButton btn;
 
@@ -79,14 +80,19 @@ namespace MonoForms
                 Exit();
 
             MouseState mouseState = Mouse.GetState();
-            
+
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                Rectangle r = new Rectangle((int)btn.Position.X - btn._texture.Width / 2, (int)btn.Position.Y - btn._texture.Height / 2, btn._texture.Width, btn._texture.Height);
-                if (r.Contains(mouseState.Position))
+
+                if (!hasclicked && btn.boundsRectangle.Contains(mouseState.Position))
                 {
-                    Debug.WriteLine("Du är värdelös :P");
+                    btn.Toggle();
                 }
+                hasclicked = true;
+            }
+            else
+            {
+                hasclicked = false;
             }
 
             // TODO: Add your update logic here
