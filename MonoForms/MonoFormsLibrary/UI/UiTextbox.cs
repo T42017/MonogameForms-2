@@ -77,11 +77,10 @@ namespace MonoFormsLibrary.UI
             }
 
             _currentFrame++;
-            if (_currentFrame >= _framesBetweenBlicks)
-            {
-                _currentFrame -= _framesBetweenBlicks;
-                _drawUnderScore = !_drawUnderScore;
-            }
+            if (_currentFrame < _framesBetweenBlicks) return;
+
+            _currentFrame -= _framesBetweenBlicks;
+            _drawUnderScore = !_drawUnderScore;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -100,116 +99,6 @@ namespace MonoFormsLibrary.UI
                 Position + lineDrawPosition + new Vector2(30, -1));
         }
         #endregion
-
-
-
-        public void AddKeyToText(Keys key, KeyboardState ckstate, KeyboardState lkstate)
-        {
-            string newChar = "";
-
-            if (_text.Length >= 20 && key != Keys.Back)
-                return;
-
-            switch (key)
-            {
-                case Keys.A:
-                    newChar += "a";
-                    break;
-                case Keys.B:
-                    newChar += "b";
-                    break;
-                case Keys.C:
-                    newChar += "c";
-                    break;
-                case Keys.D:
-                    newChar += "d";
-                    break;
-                case Keys.E:
-                    newChar += "e";
-                    break;
-                case Keys.F:
-                    newChar += "f";
-                    break;
-                case Keys.G:
-                    newChar += "g";
-                    break;
-                case Keys.H:
-                    newChar += "h";
-                    break;
-                case Keys.I:
-                    newChar += "i";
-                    break;
-                case Keys.J:
-                    newChar += "j";
-                    break;
-                case Keys.K:
-                    newChar += "k";
-                    break;
-                case Keys.L:
-                    newChar += "l";
-                    break;
-                case Keys.M:
-                    newChar += "m";
-                    break;
-                case Keys.N:
-                    newChar += "n";
-                    break;
-                case Keys.O:
-                    newChar += "o";
-                    break;
-                case Keys.P:
-                    newChar += "p";
-                    break;
-                case Keys.Q:
-                    newChar += "q";
-                    break;
-                case Keys.R:
-                    newChar += "r";
-                    break;
-                case Keys.S:
-                    newChar += "s";
-                    break;
-                case Keys.T:
-                    newChar += "t";
-                    break;
-                case Keys.U:
-                    newChar += "u";
-                    break;
-                case Keys.V:
-                    newChar += "v";
-                    break;
-                case Keys.W:
-                    newChar += "w";
-                    break;
-                case Keys.X:
-                    newChar += "x";
-                    break;
-                case Keys.Y:
-                    newChar += "y";
-                    break;
-                case Keys.Z:
-                    newChar += "z";
-                    break;
-                case Keys.Space:
-                    newChar += " ";
-                    break;
-                case Keys.Back:
-                    if (_text.Length != 0)
-                        _text = _text.Remove(_text.Length - 1, 1);
-                    return;
-            }
-            if (lkstate.IsKeyDown(Keys.RightShift) ||
-                ckstate.IsKeyDown(Keys.LeftShift))
-            {
-                newChar = newChar.ToUpper();
-            }
-            _text.Append(newChar);
-            Debug.WriteLine("Added character");
-        }
-
-        public bool CheckKey(Keys theKey, KeyboardState ckstate, KeyboardState lkstate)
-        {
-            return lkstate.IsKeyDown(theKey) && ckstate.IsKeyUp(theKey);
-        }
+        
     }
 }

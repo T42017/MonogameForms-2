@@ -9,7 +9,7 @@ namespace MonoFormsLibrary.UI
         #region Private fields
         public Texture2D _texture;
         private Texture2D _highlightTexture;
-        public float textureScale = 2f;
+        public float textureScale = 0.4f;
         public float textureWidth;
         public float textureHeight;
         #endregion

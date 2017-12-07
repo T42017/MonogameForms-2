@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,8 @@ namespace MonoFormsLibrary.UI
 
         public void Update()
         {
+            Input.Instance.Update();
+
             MouseState mouseState = Input.Instance.MouseState;
 
             if (mouseState.LeftButton == ButtonState.Pressed)
@@ -57,6 +60,13 @@ namespace MonoFormsLibrary.UI
                     }
                 }
             }
+
+            string[] strs = Input.Instance.GetKeyboardCharacters();
+
+            for (int i = 0; i < strs.Length; i++)
+            {
+                Debug.WriteLine(strs[i]);
+            } 
 
             foreach (BaseUiComponent comp in _components)
             {
