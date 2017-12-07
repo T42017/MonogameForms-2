@@ -23,7 +23,7 @@ namespace MonoFormsLibrary.UI
             _highlightTexture = Game.Content.Load<Texture2D>("ButtonMarked");
             textureWidth = _texture.Width * textureScale;
             textureHeight = _texture.Height * textureScale;
-            boundsRectangle = new Rectangle((int)(Position.X - (_texture.Width*textureScale) / 2), (int)(Position.Y - (_texture.Height*textureScale) / 2), _texture.Width, _texture.Height);
+            boundsRectangle = new Rectangle((int) (Position.X - textureWidth/ 2), (int) (Position.Y - textureHeight / 2), (int) textureWidth, (int) textureHeight);
         }
         #endregion
         
@@ -36,9 +36,9 @@ namespace MonoFormsLibrary.UI
             spriteBatch.Draw(_texture, Position - new Vector2(textureWidth / 2f, textureHeight / 2f), null, Color.White, 0f , new Vector2(), textureScale, SpriteEffects.None, 0f);
             spriteBatch.DrawString(Font, Text, Position - textSize / 2- new Vector2(45*textureScale,0), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
-            if (IsHighlighted)
-                spriteBatch.Draw(_highlightTexture, Position - new Vector2(textureWidth / 2f, textureHeight / 2f), null, Color.White, 0f, new Vector2(), textureScale, SpriteEffects.None, 0f);
-                spriteBatch.DrawString(Font, Text, Position - textSize / 2 - new Vector2(45 * textureScale, 0), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            //if (IsHighlighted)
+            //    spriteBatch.Draw(_highlightTexture, Position - new Vector2(textureWidth / 2f, textureHeight / 2f), null, Color.White, 0f, new Vector2(), textureScale, SpriteEffects.None, 0f);
+            //    spriteBatch.DrawString(Font, Text, Position - textSize / 2 - new Vector2(45 * textureScale, 0), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
         } 
         #endregion
     }

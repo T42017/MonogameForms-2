@@ -85,7 +85,7 @@ namespace MonoForms
             {
                 if (!hasclicked && btn.boundsRectangle.Contains(mouseState.Position))
                 {
-                    btn.Draw(spriteBatch);
+                    Debug.WriteLine("gaga");
                 }
                 hasclicked = true;
             }
