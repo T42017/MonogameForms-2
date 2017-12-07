@@ -12,7 +12,6 @@ namespace MonoFormsLibrary.UI
         public float TextureScale = 0.5f;
         public float TextureWidth;
         public float TextureHeight;
-        public Rectangle BoundsRectangle;
         #endregion
 
         #region Public constructors

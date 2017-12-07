@@ -13,9 +13,13 @@ namespace MonoFormsLibrary.UI
 
         private readonly List<BaseUiComponent> _components = new List<BaseUiComponent>();
 
+        private KeyboardState _keyboardState;
+        private KeyboardState _lastKeyboardState;
+
         public Menu()
         {
-            
+            _keyboardState = Keyboard.GetState();
+            _lastKeyboardState = Keyboard.GetState();
         }
 
         public void Add(BaseUiComponent component)
@@ -45,17 +49,26 @@ namespace MonoFormsLibrary.UI
 
         public void Update()
         {
+            _keyboardState = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
 
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-
+                foreach (BaseUiComponent comp in _components)
+                {
+                    if (comp.HasClickEvent && comp.BoundsRectangle.Contains(mouseState.Position))
+                    {
+                        comp.ClickEvent?.Invoke(comp, EventArgs.Empty);
+                    }
+                }
             }
 
             foreach (BaseUiComponent comp in _components)
             {
                 comp.Update();
             }
+
+            _lastKeyboardState = _keyboardState;
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -18,6 +18,7 @@ namespace MonoFormsLibrary.UI
         public string Text { get; set; } = "";
         public SpriteFont Font { get; }
         public EventHandler ClickEvent { get; }
+        public Rectangle BoundsRectangle;
         #endregion
 
         #region Protected constructors
