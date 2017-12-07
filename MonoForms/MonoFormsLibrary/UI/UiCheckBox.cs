@@ -35,7 +35,6 @@ namespace MonoFormsLibrary.UI
             }
         }
 
-
         public void Checked()
         {
             _guiCheckBox = Game.Content.Load<Texture2D>("checkedBox");

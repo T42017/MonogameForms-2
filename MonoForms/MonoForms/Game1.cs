@@ -96,7 +96,10 @@ namespace MonoForms
                     raido.Toggle();
                 }
                 hasclicked = true;
-            } else {
+            }
+
+            else
+            {
                 hasclicked = false;
             }
 
@@ -107,6 +110,7 @@ namespace MonoForms
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
