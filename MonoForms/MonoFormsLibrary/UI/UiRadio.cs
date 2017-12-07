@@ -20,7 +20,7 @@ namespace MonoFormsLibrary.UI
         public UiRadio(Game game, Vector2 position, string text, SpriteFont font) : base(game,
             position, false, null, text, font)
         {
-            _guiRadio = Game.Content.Load<Texture2D>("UnCheckedBox");
+            _guiRadio = Game.Content.Load<Texture2D>("UnclickedRadio");
             guiWidth = _guiRadio.Width * guiScale;
             guiHeight = _guiRadio.Height * guiScale;
             boundsRectangle = new Rectangle((int) (Position.X - (_guiRadio.Width * guiScale) / 2), (int) (Position.Y - (_guiRadio.Height * guiScale) / 2), (int) (_guiRadio.Width * guiScale),
@@ -39,13 +39,13 @@ namespace MonoFormsLibrary.UI
         
         public void Checked()
         {
-            _guiRadio = Game.Content.Load<Texture2D>("checkedBox");
+            _guiRadio = Game.Content.Load<Texture2D>("ClickedRadio");
             IsChecked = true;
         }
 
         public void UnChecked()
         {
-            _guiRadio = Game.Content.Load<Texture2D>("UnCheckedBox");
+            _guiRadio = Game.Content.Load<Texture2D>("UnclickedRadio");
             IsChecked = false;
         }
 
