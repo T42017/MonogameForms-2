@@ -16,7 +16,7 @@ namespace MonoForms
         SpriteBatch spriteBatch;
 
         public int WindowWidth, WindowHeight;
-
+        public bool hasclicked;
         public UiCheckBox cbox;
         public UiButton btn;
 
@@ -86,13 +86,18 @@ namespace MonoForms
             
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                Rectangle r = new Rectangle((int)cbox.Position.X - cbox._guiCheckBox.Width / 2, (int)cbox.Position.Y - cbox._guiCheckBox.Height / 2, cbox._guiCheckBox.Width, cbox._guiCheckBox.Height);
-                if (r.Contains(mouseState.Position))
+                
+                if (!hasclicked && cbox.boundsRectangle.Contains(mouseState.Position))
                 {
-                    Debug.WriteLine("Du är värdelös :P");
+                    cbox.Toggle();
                 }
-            }
 
+                hasclicked = true;
+            }
+            else
+            {
+                hasclicked = false;
+            }
             // TODO: Add your update logic here
             base.Update(gameTime);
         }
