@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Input.cs" />
     <Compile Include="UI\BaseUIComponent.cs" />
     <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\UiButton.cs" />

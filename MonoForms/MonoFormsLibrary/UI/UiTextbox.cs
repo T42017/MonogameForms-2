@@ -16,7 +16,6 @@ namespace MonoFormsLibrary.UI
         private const int _framesBetweenBlicks = 25;
         private int _currentFrame = 0;
         private bool _drawUnderScore = false;
-
         #endregion
 
         #region Public properties
