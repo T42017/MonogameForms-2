@@ -24,7 +24,7 @@ namespace MonoFormsLibrary.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            float textureScale = 0.3f;
+            float textureScale = 1f;
             float textureWidth = _texture.Width * textureScale;
             float textureHeight = _texture.Height * textureScale;
             

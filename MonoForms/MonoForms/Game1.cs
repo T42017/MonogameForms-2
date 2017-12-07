@@ -17,7 +17,10 @@ namespace MonoForms
 
         public int WindowWidth, WindowHeight;
 
-        public UiButton btn;
+        public UiProgressBar Progressbar;
+        public bool MoveUp = true;
+        public UiButton Btn;
+        public bool hasClicked;
 
         public Game1()
         {
@@ -36,9 +39,9 @@ namespace MonoForms
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             WindowWidth = graphics.PreferredBackBufferWidth;
             WindowHeight = graphics.PreferredBackBufferHeight;
+            // TODO: Add your initialization logic here
            
             base.Initialize();
         }
@@ -51,12 +54,16 @@ namespace MonoForms
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            btn = new UiButton(this, Vector2.One, "", Content.Load<SpriteFont>("file") ,
-                delegate(object sender, EventArgs args)
-                {
-                    Exit();
-                });
-            // TODO: use this.Content to load your game content here
+            SpriteFont font = Content.Load<SpriteFont>("file");
+            Progressbar = new UiProgressBar(this, new Vector2(0, 200), 20, font);
+            Btn = new UiButton(this, Vector2.Zero, "clickme", font, delegate(object sender, EventArgs args)
+            {
+                Progressbar.Procent += (MoveUp ? 5 : -5);
+                if (Progressbar.Procent == 100)
+                    MoveUp = false;
+                else if (Progressbar.Procent == 0)
+                    MoveUp = true;
+            });
         }
 
         /// <summary>
@@ -79,17 +86,20 @@ namespace MonoForms
                 Exit();
 
             MouseState mouseState = Mouse.GetState();
-            
+
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                Rectangle r = new Rectangle((int)btn.Position.X - btn._texture.Width / 2, (int)btn.Position.Y - btn._texture.Height / 2, btn._texture.Width, btn._texture.Height);
-                if (r.Contains(mouseState.Position))
+                Rectangle r = new Rectangle((int) Btn.Position.X - Btn._texture.Width / 2,
+                    (int) Btn.Position.Y - Btn._texture.Height / 2, Btn._texture.Width, Btn._texture.Height);
+                if (!hasClicked && r.Contains(mouseState.Position))
                 {
-                    Debug.WriteLine("Du är värdelös :P");
+                    Btn.ClickEvent?.Invoke(null, null);
                 }
+                hasClicked = true;
+            } else {
+                hasClicked = false;
             }
-
-            // TODO: Add your update logic here
+            
             base.Update(gameTime);
         }
 
@@ -101,8 +111,8 @@ namespace MonoForms
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            btn.Draw(spriteBatch);
-            // TODO: Add your drawing code here
+            Progressbar.Draw(spriteBatch);
+            Btn.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
