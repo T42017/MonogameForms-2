@@ -29,17 +29,6 @@ namespace MonoFormsLibrary
             LastKeyboardState = KeyboardState;
             KeyboardState = Keyboard.GetState();
         }
-
-        public string[] GetKeyboardCharacters()
-        {
-            List<Keys> keys = new List<Keys>(KeyboardState.GetPressedKeys());
-            List<Keys> lastKeys = new List<Keys>(LastKeyboardState.GetPressedKeys());
-
-            keys.RemoveAll(key => ((int)key) < 32 || ((int)key) > 126);
-            lastKeys.RemoveAll(key => ((int)key) < 32 || ((int)key) > 126);
-
-            return (from t in keys where !lastKeys.Exists(key => key.Equals(t)) select t.ToString()).ToArray();
-        } 
         #endregion
     }
 }

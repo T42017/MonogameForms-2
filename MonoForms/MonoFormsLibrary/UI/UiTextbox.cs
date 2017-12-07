@@ -19,10 +19,7 @@ namespace MonoFormsLibrary.UI
         #endregion
 
         #region Public properties
-#pragma warning disable 108,114
         public string Text
-
-#pragma warning restore 108,114
         {
             get { return _text.ToString(); }
             set

@@ -19,10 +19,13 @@ namespace MonoFormsLibrary.UI
         public SpriteFont Font { get; }
         public EventHandler ClickEvent { get; }
         public Rectangle BoundsRectangle;
+
+        public bool canHaveFocus;
+        public bool hasFocus;
         #endregion
 
         #region Protected constructors
-        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent, string text, SpriteFont font)
+        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, bool canHaveFocus, EventHandler clickEvent, string text, SpriteFont font)
         {
             Game = game;
             Position = position + new Vector2(1280 / 2f, 720 / 2f);
@@ -35,7 +38,7 @@ namespace MonoFormsLibrary.UI
                 HasClickEvent = true;
         }
 
-        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent, SpriteFont font)
+        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, bool canHaveFocus, EventHandler clickEvent, SpriteFont font)
         {
             Game = game;
             Position = position + new Vector2(1280 / 2f, 720 / 2f);
@@ -47,7 +50,7 @@ namespace MonoFormsLibrary.UI
                 HasClickEvent = true;
         }
 
-        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, EventHandler clickEvent)
+        protected BaseUiComponent(Game game, Vector2 position, bool canBeHighlighted, bool canHaveFocus, EventHandler clickEvent)
         {
             Game = game;
             Position = position + new Vector2(1280 / 2f, 720 / 2f);

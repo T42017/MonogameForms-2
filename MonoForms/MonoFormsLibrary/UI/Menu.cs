@@ -57,16 +57,14 @@ namespace MonoFormsLibrary.UI
                     if (comp.HasClickEvent && comp.BoundsRectangle.Contains(mouseState.Position))
                     {
                         comp.ClickEvent?.Invoke(comp, EventArgs.Empty);
+                        if (comp.canHaveFocus) comp.hasFocus = true;
+                    }
+                    else
+                    {
+                        if (!comp.canHaveFocus) comp.hasFocus = false;
                     }
                 }
             }
-
-            string[] strs = Input.Instance.GetKeyboardCharacters();
-
-            for (int i = 0; i < strs.Length; i++)
-            {
-                Debug.WriteLine(strs[i]);
-            } 
 
             foreach (BaseUiComponent comp in _components)
             {
