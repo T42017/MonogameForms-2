@@ -17,14 +17,36 @@ namespace MonoFormsLibrary.UI
         public float guiHeight;
         public Rectangle boundsRectangle;
 
-        public UiRadio(Game game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game,
-            position, true, clickEvent, text, font)
+        public UiRadio(Game game, Vector2 position, string text, SpriteFont font) : base(game,
+            position, false, null, text, font)
         {
             _guiRadio = Game.Content.Load<Texture2D>("UnCheckedBox");
             guiWidth = _guiRadio.Width * guiScale;
             guiHeight = _guiRadio.Height * guiScale;
             boundsRectangle = new Rectangle((int) (Position.X - (_guiRadio.Width * guiScale) / 2), (int) (Position.Y - (_guiRadio.Height * guiScale) / 2), (int) (_guiRadio.Width * guiScale),
                 (int) (_guiRadio.Height * guiScale));
+        }
+
+        public void Toggle()
+        {
+            if (IsChecked)
+                UnChecked();
+            else
+            {
+                Checked();
+            }
+        }
+        
+        public void Checked()
+        {
+            _guiRadio = Game.Content.Load<Texture2D>("checkedBox");
+            IsChecked = true;
+        }
+
+        public void UnChecked()
+        {
+            _guiRadio = Game.Content.Load<Texture2D>("UnCheckedBox");
+            IsChecked = false;
         }
 
         public override void Update()
@@ -36,7 +58,7 @@ namespace MonoFormsLibrary.UI
             Vector2 textSize = Font.MeasureString(Text);
             spriteBatch.Draw(_guiRadio, Position - new Vector2(guiWidth / 2f, guiHeight / 2f), null, Color.White, 0f,
                 new Vector2(), guiScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(Font, Text, Position - textSize / 2, Color.Black, 0, Vector2.Zero, 1f,
+            spriteBatch.DrawString(Font, Text, Position + new Vector2(_guiRadio.Width/2f, 0) - new Vector2(textSize.X-10, textSize.Y/2), Color.Black, 0, Vector2.Zero, 1f,
                 SpriteEffects.None, 0);
         }
     }

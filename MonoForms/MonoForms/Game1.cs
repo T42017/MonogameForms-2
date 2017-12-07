@@ -19,6 +19,7 @@ namespace MonoForms
         public bool hasclicked;
         public UiCheckBox cbox;
         public UiButton btn;
+        public UiRadio raido;
 
         public Game1()
         {
@@ -52,11 +53,15 @@ namespace MonoForms
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            cbox = new UiCheckBox(this, Vector2.One, "", Content.Load<SpriteFont>("file"),
+            SpriteFont font = Content.Load<SpriteFont>("file");
+
+            cbox = new UiCheckBox(this, Vector2.One, "", font,
             delegate (object sender, EventArgs args)
             {
                 Exit();
             });
+
+            raido = new UiRadio(this, new Vector2(0, 200), "hejsan", font);
 
             //btn = new UiButton(this, Vector2.One, "", Content.Load<SpriteFont>("file") ,
 
@@ -86,19 +91,15 @@ namespace MonoForms
             
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                
-                if (!hasclicked && cbox.boundsRectangle.Contains(mouseState.Position))
+                if (!hasclicked && raido.boundsRectangle.Contains(mouseState.Position))
                 {
-                    cbox.Toggle();
+                    raido.Toggle();
                 }
-
                 hasclicked = true;
-            }
-            else
-            {
+            } else {
                 hasclicked = false;
             }
-            // TODO: Add your update logic here
+
             base.Update(gameTime);
         }
 
@@ -112,6 +113,7 @@ namespace MonoForms
             spriteBatch.Begin();
             //btn.Draw(spriteBatch);
             cbox.Draw(spriteBatch);
+            raido.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
