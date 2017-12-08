@@ -13,6 +13,8 @@ namespace MonoFormsLibrary.UI
     {
 
         private readonly List<BaseUiComponent> _components = new List<BaseUiComponent>();
+
+        private bool HasClickedLeftMouseButton;
         
         public Menu()
         {
@@ -52,18 +54,28 @@ namespace MonoFormsLibrary.UI
 
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                foreach (BaseUiComponent comp in _components)
+                if (!HasClickedLeftMouseButton)
                 {
-                    if (comp.HasClickEvent && comp.BoundsRectangle.Contains(mouseState.Position))
+                    foreach (BaseUiComponent comp in _components)
                     {
-                        comp.ClickEvent?.Invoke(comp, EventArgs.Empty);
-                        if (comp.canHaveFocus) comp.hasFocus = true;
-                    }
-                    else
-                    {
-                        if (!comp.canHaveFocus) comp.hasFocus = false;
+                        if (comp.BoundsRectangle.Contains(mouseState.Position))
+                        {
+                            if (comp.HasClickEvent) comp.ClickEvent?.Invoke(comp, EventArgs.Empty);
+                            if (comp.canHaveFocus) comp.hasFocus = true;
+                            Debug.WriteLine("true");
+                        }
+                        else
+                        {
+                            if (comp.canHaveFocus) comp.hasFocus = false;
+                            Debug.WriteLine("false");
+                        }
                     }
                 }
+                HasClickedLeftMouseButton = true;
+            }
+            else
+            {
+                HasClickedLeftMouseButton = false;
             }
 
             foreach (BaseUiComponent comp in _components)

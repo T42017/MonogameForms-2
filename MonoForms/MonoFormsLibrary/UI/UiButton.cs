@@ -15,13 +15,13 @@ namespace MonoFormsLibrary.UI
         #endregion
 
         #region Public constructors
-        public UiButton(Game game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game, position, true, clickEvent, text, font)
+        public UiButton(Game game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game, position, true, true, clickEvent, text, font)
         {
             _texture = Game.Content.Load<Texture2D>("button");
             //_highlightTexture = Game.Content.Load<Texture2D>("playerLife2_red");
             textureWidth = _texture.Width * textureScale;
             textureHeight = _texture.Height * textureScale;
-            BoundsRectangle = new Rectangle((int)(Position.X - (_texture.Width * textureScale) / 2), (int)(Position.Y - (_texture.Height * textureScale) / 2), _texture.Width, _texture.Height);
+            BoundsRectangle = new Rectangle((int)(Position.X - textureWidth / 2), (int)(Position.Y - textureHeight / 2),(int) textureWidth, (int) textureHeight);
         }
         #endregion
 

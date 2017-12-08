@@ -33,6 +33,7 @@ namespace MonoFormsLibrary.UI
             ClickEvent = clickEvent;
             Text = text;
             Font = font;
+            this.canHaveFocus = canHaveFocus;
 
             if (ClickEvent != null)
                 HasClickEvent = true;
@@ -45,6 +46,7 @@ namespace MonoFormsLibrary.UI
             CanBeHighLighted = canBeHighlighted;
             ClickEvent = clickEvent;
             Font = font;
+            this.canHaveFocus = canHaveFocus;
 
             if (ClickEvent != null)
                 HasClickEvent = true;
@@ -56,6 +58,7 @@ namespace MonoFormsLibrary.UI
             Position = position + new Vector2(1280 / 2f, 720 / 2f);
             CanBeHighLighted = canBeHighlighted;
             ClickEvent = clickEvent;
+            this.canHaveFocus = canHaveFocus;
 
             if (ClickEvent != null)
                 HasClickEvent = true;

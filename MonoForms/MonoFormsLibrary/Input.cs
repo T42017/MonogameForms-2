@@ -28,6 +28,7 @@ namespace MonoFormsLibrary
         {
             LastKeyboardState = KeyboardState;
             KeyboardState = Keyboard.GetState();
+            MouseState = Mouse.GetState();
         }
         #endregion
     }
