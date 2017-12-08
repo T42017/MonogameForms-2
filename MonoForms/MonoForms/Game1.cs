@@ -56,9 +56,12 @@ namespace MonoForms
 
             SpriteFont font = Content.Load<SpriteFont>("file");
 
-            UiProgressBar progressbar = new UiProgressBar(this, new Vector2(0, -100), 0, font);
+            UiProgressBar progressbar = new UiProgressBar(this, new Vector2(0, 200), 51, font);
+            UiTextbox textbox = new UiTextbox(this, new Vector2(0, -100), font);
+            UiRadio radio = new UiRadio(this, new Vector2(0, -200), "hejsan", font);
+            UiCheckBox box = new UiCheckBox(this, new Vector2(0, 0), "checkbox", font);
 
-            UiButton btn = new UiButton(this, Vector2.Zero, "Hej", font,
+            UiButton btn = new UiButton(this, new Vector2(0, 100), "Hej", font,
             delegate (object sender, EventArgs args)
             {
                 progressbar.Procent += (MoveUp ? 2 : -3);
@@ -71,16 +74,19 @@ namespace MonoForms
                     case 0:
                         MoveUp = true;
                         break;
-                }
-            });
 
-            UiTextbox box = new UiTextbox(this, new Vector2(0, 100), font);
-            UiRadio radio = new UiRadio(this, new Vector2(0, 200), "hejsan", font);
+                }
+                if (box.IsChecked)
+                    textbox.IsVisible = false;
+                else
+                    textbox.IsVisible = true;
+            });
 
             Menu1 = new Menu();
             Menu1.Add(btn);
-            Menu1.Add(box);
+            Menu1.Add(textbox);
             Menu1.Add(radio);
+            Menu1.Add(box);
             Menu1.Add(progressbar);
         }
 

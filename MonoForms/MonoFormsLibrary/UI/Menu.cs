@@ -60,7 +60,7 @@ namespace MonoFormsLibrary.UI
                     {
                         if (comp.BoundsRectangle.Contains(mouseState.Position))
                         {
-                            if (comp.HasClickEvent) comp.ClickEvent?.Invoke(comp, EventArgs.Empty);
+                            comp.ClickEvent?.Invoke(comp, EventArgs.Empty);
                             if (comp.canHaveFocus) comp.hasFocus = true;
                         }
                         else
@@ -86,7 +86,8 @@ namespace MonoFormsLibrary.UI
         {
             foreach (BaseUiComponent comp in _components)
             {
-                comp.Draw(spriteBatch);
+                if (comp.IsVisible)
+                    comp.Draw(spriteBatch);
             }
         }
     }

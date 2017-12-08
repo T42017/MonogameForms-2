@@ -25,7 +25,7 @@ namespace MonoFormsLibrary.UI
         private const int _framesBetweenBlicks = 25;
         private int _currentFrame = 0;
         private bool _drawUnderScore = false;
-        public float scale = 0.4f;
+        public float scale = 0.2f;
         public float textureWidth;
         public float textureHeight;
         #endregion
@@ -43,9 +43,9 @@ namespace MonoFormsLibrary.UI
         #endregion
 
         #region Public constructors
-        public UiTextbox(Game game, Vector2 position, SpriteFont font) : base(game, position, true, true, ClickEvent, font)
+        public UiTextbox(Game game, Vector2 position, SpriteFont font) : base(game, position, true, true, null, font)
         {
-            _texture = Game.Content.Load<Texture2D>("button");
+            _texture = Game.Content.Load<Texture2D>("textbox");
             textureWidth = _texture.Width * scale;
             textureHeight = _texture.Height * scale;
 
@@ -55,11 +55,6 @@ namespace MonoFormsLibrary.UI
             BoundsRectangle = new Rectangle((int)(Position.X - textureWidth / 2), (int)(Position.Y - textureHeight / 2), (int)textureWidth, (int)textureHeight);
         }
         #endregion
-
-        private static void ClickEvent(object sender, EventArgs eventArgs)
-        {
-            ((UiCheckBox)sender)?.Toggle();
-        }
 
         #region Private methods
         private void DrawLine(SpriteBatch sb, Vector2 start, Vector2 end)
@@ -119,7 +114,7 @@ namespace MonoFormsLibrary.UI
             Vector2 textSize = Font.MeasureString(_text);
             spriteBatch.Draw(_texture, Position - new Vector2(textureWidth / 2f, textureHeight / 2f), null, Color.White, 0f, new Vector2(), scale, SpriteEffects.None, 0f);
 
-            spriteBatch.DrawString(Font, _text.ToString(), Position - (textSize / 2), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Font, _text.ToString(), Position - (textSize / 2), Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
             if (!_drawUnderScore) return;
 
@@ -232,7 +227,6 @@ namespace MonoFormsLibrary.UI
                 newChar = newChar.ToUpper();
             }
             _text.Append(newChar);
-            Debug.WriteLine("Added character");
         }
 
         public bool CheckKey(Keys theKey, KeyboardState ckstate, KeyboardState lkstate)

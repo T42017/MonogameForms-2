@@ -19,6 +19,7 @@ namespace MonoFormsLibrary.UI
         public SpriteFont Font { get; }
         public EventHandler ClickEvent { get; }
         public Rectangle BoundsRectangle;
+        public bool IsVisible = true;
 
         public bool canHaveFocus;
         public bool hasFocus;

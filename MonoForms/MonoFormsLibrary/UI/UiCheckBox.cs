@@ -16,14 +16,13 @@ namespace MonoFormsLibrary.UI
         public float guiScale = 0.3f;
         public float guiWidth;
         public float guiHeight;
-        public Rectangle boundsRectangle;
 
         public UiCheckBox(Game game, Vector2 position, string text, SpriteFont font) : base(game, position, true, false, ClickEvent, text, font)
         {
             _guiCheckBox = Game.Content.Load<Texture2D>("UnCheckedBox");
             guiWidth = _guiCheckBox.Width * guiScale;
             guiHeight = _guiCheckBox.Height * guiScale;
-            boundsRectangle = new Rectangle((int)(Position.X - (_guiCheckBox.Width * guiScale) / 2), (int)(Position.Y - (_guiCheckBox.Height * guiScale) / 2), (int)(_guiCheckBox.Width * guiScale), (int)(_guiCheckBox.Height * guiScale));
+            BoundsRectangle = new Rectangle((int) (Position.X - guiWidth / 2), (int) (Position.Y - guiHeight / 2), (int) guiWidth, (int) guiHeight);
         }
 
         private static void ClickEvent(object sender, EventArgs eventArgs)
@@ -36,9 +35,7 @@ namespace MonoFormsLibrary.UI
             if (IsChecked)
                 UnChecked();
             else
-            {
                 Checked();
-            }
         }
 
         public void Checked()
@@ -58,7 +55,7 @@ namespace MonoFormsLibrary.UI
         {
             Vector2 textSize = Font.MeasureString(Text);
             spriteBatch.Draw(_guiCheckBox, Position - new Vector2(guiWidth / 2f, guiHeight / 2f), null, Color.White, 0f, new Vector2(), guiScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(Font, Text, Position - textSize / 2, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Font, Text, Position - new Vector2(-(textSize.X/2f), textSize.Y / 2), Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
         }
     }
 }
