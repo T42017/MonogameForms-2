@@ -62,12 +62,10 @@ namespace MonoFormsLibrary.UI
                         {
                             if (comp.HasClickEvent) comp.ClickEvent?.Invoke(comp, EventArgs.Empty);
                             if (comp.canHaveFocus) comp.hasFocus = true;
-                            Debug.WriteLine("true");
                         }
                         else
                         {
                             if (comp.canHaveFocus) comp.hasFocus = false;
-                            Debug.WriteLine("false");
                         }
                     }
                 }

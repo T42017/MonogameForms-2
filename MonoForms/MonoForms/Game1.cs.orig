@@ -20,22 +20,11 @@ namespace MonoForms
 
         public Menu Menu1;
 =======
-        private bool textboxedit = false;
-        public UiTextbox txtbox;
+        public bool hasclicked;
+        public UiCheckBox cbox;
         public UiButton btn;
->>>>>>> tedxtinput
-
-        Keys[] keysToCheck = new Keys[] {
-
-            Keys.A, Keys.B, Keys.C, Keys.D, Keys.E,
-            Keys.F, Keys.G, Keys.H, Keys.I, Keys.J,
-            Keys.K, Keys.L, Keys.M, Keys.N, Keys.O,
-            Keys.P, Keys.Q, Keys.R, Keys.S, Keys.T,
-            Keys.U, Keys.V, Keys.W, Keys.X, Keys.Y,
-            Keys.Z, Keys.Back, Keys.Space };
-
-        KeyboardState currentKeyboardState;
-        KeyboardState lastKeyboardState;
+        public UiRadio raido;
+>>>>>>> origin/Feature-Radio
 
         public Game1()
         {
@@ -71,22 +60,34 @@ namespace MonoForms
             spriteBatch = new SpriteBatch(GraphicsDevice);
 <<<<<<< HEAD
 
-            UiButton btn = new UiButton(this, Vector2.One, "Hej", Content.Load<SpriteFont>("file") ,
-=======
-            btn = new UiButton(this, Vector2.One, "Hej", Content.Load<SpriteFont>("file") ,
->>>>>>> tedxtinput
+            SpriteFont font = Content.Load<SpriteFont>("file");
+
+            UiButton btn = new UiButton(this, Vector2.One, "Hej", font,
                 delegate(object sender, EventArgs args)
                 {
-                    Exit();
+                    Debug.WriteLine("hejsan");
                 });
-<<<<<<< HEAD
+
+            UiTextbox box = new UiTextbox(this, new Vector2(0, 100), font);
 
             Menu1 = new Menu();
             Menu1.Add(btn);
+            Menu1.Add(box);
 =======
-            txtbox = new UiTextbox(this, Vector2.One, Content.Load<SpriteFont>("file"));
+            SpriteFont font = Content.Load<SpriteFont>("file");
+
+            cbox = new UiCheckBox(this, Vector2.One, "", font,
+            delegate (object sender, EventArgs args)
+            {
+                Exit();
+            });
+
+            raido = new UiRadio(this, new Vector2(0, 200), "hejsan", font);
+
+            //btn = new UiButton(this, Vector2.One, "", Content.Load<SpriteFont>("file") ,
+
             // TODO: use this.Content to load your game content here
->>>>>>> tedxtinput
+>>>>>>> origin/Feature-Radio
         }
 
         /// <summary>
@@ -108,51 +109,25 @@ namespace MonoForms
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-<<<<<<< HEAD
             Menu1.Update();
             
+<<<<<<< HEAD
 =======
-            MouseState mouseState = Mouse.GetState();
-            
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                Rectangle r = new Rectangle((int)btn.Position.X - btn._texture.Width / 2, (int)btn.Position.Y - btn._texture.Height / 2, btn._texture.Width, btn._texture.Height);
-                if (r.Contains(mouseState.Position))
+                if (!hasclicked && raido.boundsRectangle.Contains(mouseState.Position))
                 {
-                    Debug.WriteLine("Du är värdelös :P");
+                    raido.Toggle();
                 }
+                hasclicked = true;
             }
-            if (mouseState.LeftButton == ButtonState.Pressed)
+
+            else
             {
-                Rectangle r = new Rectangle((int)txtbox.Position.X - txtbox._texture.Width / 2, (int)btn.Position.Y - btn._texture.Height / 2, btn._texture.Width, btn._texture.Height);
-                if (r.Contains(mouseState.Position))
-                {
-                    Debug.WriteLine("click!");
-                    textboxedit = true;
-                }
+                hasclicked = false;
             }
 
-
-            if (textboxedit)
-            {
-                currentKeyboardState = Keyboard.GetState();
-
-                foreach (Keys key in keysToCheck)
-                {
-                    if (txtbox.CheckKey(key, currentKeyboardState, lastKeyboardState))
-                    {
-                        txtbox.AddKeyToText(key, currentKeyboardState, lastKeyboardState);
-                        break;
-                    }
-                }
-
-                base.Update(gameTime);
-
-                lastKeyboardState = currentKeyboardState;
-            }
-
-            // TODO: Add your update logic here
->>>>>>> tedxtinput
+>>>>>>> origin/Feature-Radio
             base.Update(gameTime);
         }
 
@@ -160,6 +135,7 @@ namespace MonoForms
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -167,10 +143,10 @@ namespace MonoForms
 <<<<<<< HEAD
             Menu1.Draw(spriteBatch);
 =======
-            btn.Draw(spriteBatch);
-            txtbox.Draw(spriteBatch);
-            // TODO: Add your drawing code here
->>>>>>> tedxtinput
+            //btn.Draw(spriteBatch);
+            cbox.Draw(spriteBatch);
+            raido.Draw(spriteBatch);
+>>>>>>> origin/Feature-Radio
             spriteBatch.End();
             base.Draw(gameTime);
         }

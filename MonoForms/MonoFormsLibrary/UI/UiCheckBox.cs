@@ -17,7 +17,7 @@ namespace MonoFormsLibrary.UI
         public float guiHeight;
         public Rectangle boundsRectangle;
 
-        public UiCheckBox(Game game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game, position, true, clickEvent, text, font)
+        public UiCheckBox(Game game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game, position, true, false, clickEvent, text, font)
         {
             _guiCheckBox = Game.Content.Load<Texture2D>("UnCheckedBox");
             guiWidth = _guiCheckBox.Width * guiScale;

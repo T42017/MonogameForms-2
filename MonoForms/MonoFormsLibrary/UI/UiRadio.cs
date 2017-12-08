@@ -15,14 +15,13 @@ namespace MonoFormsLibrary.UI
         public float guiScale = 0.2f;
         public float guiWidth;
         public float guiHeight;
-        public Rectangle boundsRectangle;
 
-        public UiRadio(Game game, Vector2 position, string text, SpriteFont font) : base(game, position, false, null, text, font)
+        public UiRadio(Game game, Vector2 position, string text, SpriteFont font) : base(game, position, false, false, null, text, font)
         {
             _guiRadio = Game.Content.Load<Texture2D>("UnclickedRadio");
             guiWidth = _guiRadio.Width * guiScale;
             guiHeight = _guiRadio.Height * guiScale;
-            boundsRectangle = new Rectangle((int) (Position.X - (_guiRadio.Width * guiScale) / 2), (int) (Position.Y - (_guiRadio.Height * guiScale) / 2), (int) (_guiRadio.Width * guiScale), (int) (_guiRadio.Height * guiScale));
+            BoundsRectangle = new Rectangle((int) (Position.X - guiWidth / 2), (int) (Position.Y - guiHeight / 2), (int)guiWidth, (int) guiHeight);
         }
 
         public void Toggle()
@@ -30,9 +29,7 @@ namespace MonoFormsLibrary.UI
             if (IsChecked)
                 UnChecked();
             else
-            {
                 Checked();
-            }
         }
         
         public void Checked()
