@@ -16,12 +16,17 @@ namespace MonoFormsLibrary.UI
         public float guiWidth;
         public float guiHeight;
 
-        public UiRadio(Game game, Vector2 position, string text, SpriteFont font) : base(game, position, false, false, null, text, font)
+        public UiRadio(Game game, Vector2 position, string text, SpriteFont font) : base(game, position, false, false, ClickEvent, text, font)
         {
             _guiRadio = Game.Content.Load<Texture2D>("UnclickedRadio");
             guiWidth = _guiRadio.Width * guiScale;
             guiHeight = _guiRadio.Height * guiScale;
             BoundsRectangle = new Rectangle((int) (Position.X - guiWidth / 2), (int) (Position.Y - guiHeight / 2), (int)guiWidth, (int) guiHeight);
+        }
+
+        private static void ClickEvent(object sender, EventArgs eventArgs)
+        {
+            ((UiRadio) sender)?.Toggle();
         }
 
         public void Toggle()

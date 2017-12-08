@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,17 @@ namespace MonoFormsLibrary.UI
         public float guiHeight;
         public Rectangle boundsRectangle;
 
-        public UiCheckBox(Game game, Vector2 position, string text, SpriteFont font, EventHandler clickEvent) : base(game, position, true, false, clickEvent, text, font)
+        public UiCheckBox(Game game, Vector2 position, string text, SpriteFont font) : base(game, position, true, false, ClickEvent, text, font)
         {
             _guiCheckBox = Game.Content.Load<Texture2D>("UnCheckedBox");
             guiWidth = _guiCheckBox.Width * guiScale;
             guiHeight = _guiCheckBox.Height * guiScale;
             boundsRectangle = new Rectangle((int)(Position.X - (_guiCheckBox.Width * guiScale) / 2), (int)(Position.Y - (_guiCheckBox.Height * guiScale) / 2), (int)(_guiCheckBox.Width * guiScale), (int)(_guiCheckBox.Height * guiScale));
+        }
+
+        private static void ClickEvent(object sender, EventArgs eventArgs)
+        {
+            ((UiCheckBox) sender)?.Toggle();
         }
 
         public void Toggle()

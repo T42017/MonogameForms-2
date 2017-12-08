@@ -43,7 +43,7 @@ namespace MonoFormsLibrary.UI
         #endregion
 
         #region Public constructors
-        public UiTextbox(Game game, Vector2 position, SpriteFont font) : base(game, position, true, true, null, font)
+        public UiTextbox(Game game, Vector2 position, SpriteFont font) : base(game, position, true, true, ClickEvent, font)
         {
             _texture = Game.Content.Load<Texture2D>("button");
             textureWidth = _texture.Width * scale;
@@ -55,6 +55,11 @@ namespace MonoFormsLibrary.UI
             BoundsRectangle = new Rectangle((int)(Position.X - textureWidth / 2), (int)(Position.Y - textureHeight / 2), (int)textureWidth, (int)textureHeight);
         }
         #endregion
+
+        private static void ClickEvent(object sender, EventArgs eventArgs)
+        {
+            ((UiCheckBox)sender)?.Toggle();
+        }
 
         #region Private methods
         private void DrawLine(SpriteBatch sb, Vector2 start, Vector2 end)

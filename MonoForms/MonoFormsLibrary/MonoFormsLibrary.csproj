@@ -45,6 +45,7 @@
     <Compile Include="UI\UiButton.cs" />
     <Compile Include="UI\UiCheckBox.cs" />
     <Compile Include="UI\UiLabel.cs" />
+    <Compile Include="UI\UiProgressBar.cs" />
     <Compile Include="UI\UiRadio.cs" />
     <Compile Include="UI\UiTextbox.cs" />
   </ItemGroup>

@@ -56,14 +56,22 @@ namespace MonoForms
 
             SpriteFont font = Content.Load<SpriteFont>("file");
 
+            UiProgressBar progressbar = new UiProgressBar(this, new Vector2(0, -100), 0, font);
+
             UiButton btn = new UiButton(this, Vector2.Zero, "Hej", font,
             delegate (object sender, EventArgs args)
             {
-                Exit();
-                if (Progressbar.Procent == 100)
-                    MoveUp = false;
-                else if (Progressbar.Procent == 0)
-                    MoveUp = true;
+                progressbar.Procent += (MoveUp ? 2 : -3);
+
+                switch (progressbar.Procent)
+                {
+                    case 100:
+                        MoveUp = false;
+                        break;
+                    case 0:
+                        MoveUp = true;
+                        break;
+                }
             });
 
             UiTextbox box = new UiTextbox(this, new Vector2(0, 100), font);
@@ -73,6 +81,7 @@ namespace MonoForms
             Menu1.Add(btn);
             Menu1.Add(box);
             Menu1.Add(radio);
+            Menu1.Add(progressbar);
         }
 
         /// <summary>
@@ -96,10 +105,6 @@ namespace MonoForms
 
             Menu1.Update();
 
-                if (!hasClicked && r.Contains(mouseState.Position))
-                hasClicked = true;
-            } else {
-                hasClicked = false;
             base.Update(gameTime);
         }
 
@@ -110,7 +115,7 @@ namespace MonoForms
         /// 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
             Menu1.Draw(spriteBatch);
             spriteBatch.End();

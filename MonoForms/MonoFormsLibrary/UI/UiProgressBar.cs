@@ -31,11 +31,12 @@ namespace MonoFormsLibrary.UI
         private Texture2D _progressTexture;
         public float Scale = 0.4f;
 
-        public UiProgressBar(Game game, Vector2 position, int procent, SpriteFont font) : base(game, position, false, null, "", font)
+        public UiProgressBar(Game game, Vector2 position, int procent, SpriteFont font) : base(game, position, false, false, null, "%", font)
         {
             Procent = procent;
             _progressbarTexture = game.Content.Load<Texture2D>("progressbar");
             _progressTexture = game.Content.Load<Texture2D>("progress");
+            BoundsRectangle = new Rectangle((int) (Position.X - (_progressbarTexture.Width * Scale) / 2f), (int) (Position.Y - (_progressbarTexture.Height * Scale) / 2f), (int)(_progressbarTexture.Width * Scale), (int)(_progressbarTexture.Height * Scale));
         }
 
         public override void Update()
