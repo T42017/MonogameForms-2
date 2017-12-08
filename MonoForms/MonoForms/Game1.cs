@@ -59,7 +59,7 @@ namespace MonoForms
             UiProgressBar progressbar = new UiProgressBar(this, new Vector2(0, 200), 51, font);
             UiTextbox textbox = new UiTextbox(this, new Vector2(0, -100), font);
             UiRadio radio = new UiRadio(this, new Vector2(0, -200), "hejsan", font);
-            UiCheckBox box = new UiCheckBox(this, new Vector2(0, 0), "checkbox", font);
+            UiCheckBox box = new UiCheckBox(this, new Vector2(0, 0), "textbox visible", font);
 
             UiButton btn = new UiButton(this, new Vector2(0, 100), "Hej", font,
             delegate (object sender, EventArgs args)
