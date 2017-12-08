@@ -17,6 +17,9 @@ namespace MonoForms
 
         public int WindowWidth, WindowHeight;
         public Menu Menu1;
+        public bool MoveUp = true;
+        public UiButton Btn;
+        public bool hasClicked;
 
         public Game1()
         {
@@ -35,9 +38,9 @@ namespace MonoForms
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             WindowWidth = graphics.PreferredBackBufferWidth;
             WindowHeight = graphics.PreferredBackBufferHeight;
+            // TODO: Add your initialization logic here
            
             base.Initialize();
         }
@@ -57,6 +60,10 @@ namespace MonoForms
             delegate (object sender, EventArgs args)
             {
                 Exit();
+                if (Progressbar.Procent == 100)
+                    MoveUp = false;
+                else if (Progressbar.Procent == 0)
+                    MoveUp = true;
             });
 
             UiTextbox box = new UiTextbox(this, new Vector2(0, 100), font);
@@ -88,7 +95,11 @@ namespace MonoForms
                 Exit();
 
             Menu1.Update();
-            
+
+                if (!hasClicked && r.Contains(mouseState.Position))
+                hasClicked = true;
+            } else {
+                hasClicked = false;
             base.Update(gameTime);
         }
 

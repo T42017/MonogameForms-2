@@ -17,14 +17,14 @@ namespace MonoForms
 
         public int WindowWidth, WindowHeight;
 <<<<<<< HEAD
-
         public Menu Menu1;
 =======
-        public bool hasclicked;
-        public UiCheckBox cbox;
-        public UiButton btn;
-        public UiRadio raido;
->>>>>>> origin/Feature-Radio
+
+        public UiProgressBar Progressbar;
+        public bool MoveUp = true;
+        public UiButton Btn;
+        public bool hasClicked;
+>>>>>>> feature-ProgressBar
 
         public Game1()
         {
@@ -43,9 +43,9 @@ namespace MonoForms
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             WindowWidth = graphics.PreferredBackBufferWidth;
             WindowHeight = graphics.PreferredBackBufferHeight;
+            // TODO: Add your initialization logic here
            
             base.Initialize();
         }
@@ -62,32 +62,31 @@ namespace MonoForms
 
             SpriteFont font = Content.Load<SpriteFont>("file");
 
-            UiButton btn = new UiButton(this, Vector2.One, "Hej", font,
-                delegate(object sender, EventArgs args)
-                {
-                    Debug.WriteLine("hejsan");
-                });
-
-            UiTextbox box = new UiTextbox(this, new Vector2(0, 100), font);
-
-            Menu1 = new Menu();
-            Menu1.Add(btn);
-            Menu1.Add(box);
-=======
-            SpriteFont font = Content.Load<SpriteFont>("file");
-
-            cbox = new UiCheckBox(this, Vector2.One, "", font,
+            UiButton btn = new UiButton(this, Vector2.Zero, "Hej", font,
             delegate (object sender, EventArgs args)
             {
                 Exit();
             });
 
-            raido = new UiRadio(this, new Vector2(0, 200), "hejsan", font);
+            UiTextbox box = new UiTextbox(this, new Vector2(0, 100), font);
+            UiRadio radio = new UiRadio(this, new Vector2(0, 200), "hejsan", font);
 
-            //btn = new UiButton(this, Vector2.One, "", Content.Load<SpriteFont>("file") ,
-
-            // TODO: use this.Content to load your game content here
->>>>>>> origin/Feature-Radio
+            Menu1 = new Menu();
+            Menu1.Add(btn);
+            Menu1.Add(box);
+            Menu1.Add(radio);
+=======
+            SpriteFont font = Content.Load<SpriteFont>("file");
+            Progressbar = new UiProgressBar(this, new Vector2(0, 200), 20, font);
+            Btn = new UiButton(this, Vector2.Zero, "clickme", font, delegate(object sender, EventArgs args)
+            {
+                Progressbar.Procent += (MoveUp ? 5 : -5);
+                if (Progressbar.Procent == 100)
+                    MoveUp = false;
+                else if (Progressbar.Procent == 0)
+                    MoveUp = true;
+            });
+>>>>>>> feature-ProgressBar
         }
 
         /// <summary>
@@ -109,25 +108,25 @@ namespace MonoForms
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Menu1.Update();
-            
 <<<<<<< HEAD
+            Menu1.Update();
 =======
+            MouseState mouseState = Mouse.GetState();
+
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                if (!hasclicked && raido.boundsRectangle.Contains(mouseState.Position))
+                Rectangle r = new Rectangle((int) Btn.Position.X - Btn._texture.Width / 2,
+                    (int) Btn.Position.Y - Btn._texture.Height / 2, Btn._texture.Width, Btn._texture.Height);
+                if (!hasClicked && r.Contains(mouseState.Position))
                 {
-                    raido.Toggle();
+                    Btn.ClickEvent?.Invoke(null, null);
                 }
-                hasclicked = true;
+                hasClicked = true;
+            } else {
+                hasClicked = false;
             }
-
-            else
-            {
-                hasclicked = false;
-            }
-
->>>>>>> origin/Feature-Radio
+>>>>>>> feature-ProgressBar
+            
             base.Update(gameTime);
         }
 
@@ -143,10 +142,9 @@ namespace MonoForms
 <<<<<<< HEAD
             Menu1.Draw(spriteBatch);
 =======
-            //btn.Draw(spriteBatch);
-            cbox.Draw(spriteBatch);
-            raido.Draw(spriteBatch);
->>>>>>> origin/Feature-Radio
+            Progressbar.Draw(spriteBatch);
+            Btn.Draw(spriteBatch);
+>>>>>>> feature-ProgressBar
             spriteBatch.End();
             base.Draw(gameTime);
         }
