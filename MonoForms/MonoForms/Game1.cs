@@ -16,8 +16,9 @@ namespace MonoForms
         SpriteBatch spriteBatch;
 
         public int WindowWidth, WindowHeight;
-
+        public bool hasclicked;
         public Menu Menu1;
+        public UiRadio raido;
 
         public Game1()
         {
@@ -55,12 +56,13 @@ namespace MonoForms
             SpriteFont font = Content.Load<SpriteFont>("file");
 
             UiButton btn = new UiButton(this, Vector2.One, "Hej", font,
-                delegate(object sender, EventArgs args)
-                {
-                    Debug.WriteLine("hejsan");
-                });
+            delegate (object sender, EventArgs args)
+            {
+                Exit();
+            });
 
             UiTextbox box = new UiTextbox(this, new Vector2(0, 100), font);
+            raido = new UiRadio(this, new Vector2(0, 200), "hejsan", font);
 
             Menu1 = new Menu();
             Menu1.Add(btn);
@@ -88,6 +90,12 @@ namespace MonoForms
 
             Menu1.Update();
             
+                hasclicked = true;
+            }
+
+            else
+            {
+                hasclicked = false;
             base.Update(gameTime);
         }
 
@@ -95,6 +103,7 @@ namespace MonoForms
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
